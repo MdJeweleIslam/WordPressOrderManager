@@ -66,8 +66,6 @@ function Msgenrolled($name, $course_name, $email_name){
     //php mailer variables
     $to = $email_name;
     $subject = "Congrats On Your Course Purchase!";
-    // $headers = 'From: info@insurancetrainingacademy.com'."\r\n" .
-    //     'Reply-To: info@insurancetrainingacademy.com' . "\r\n";
     
     $sent = wp_mail($to, $subject, $msg, 'Content-type: text/html');
 }
@@ -80,8 +78,8 @@ function enroll_student( $order_id ) {
         return;
 
     // Allow code execution only once 
-    //! get_post_meta( $order_id, '_thankyou_action_done', true )
-    if( true ) {
+
+    if( ! get_post_meta( $order_id, '_thankyou_action_done', true ) ) {
 
         // Get an instance of the WC_Order object
         $order = wc_get_order( $order_id );
